@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maia M's Design Portfolio |  Painting | Creative Works</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <iascript src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF69B4',
+            secondary: '#1A1A1A',
+            accent: '#F7F6F3',
+            neutral: '#808080',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Playfair Display', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { 
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection {
+      background-color: #FF69B4;
+      color: #1A1A1A;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-accent">
+  <!-- Navigation -->
+  <nav class="bg-secondary px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-primary font-display text-2xl">Design Studio</h1>
+      
+      <!-- Mobile Menu Button -->
+      <button 
+        class="md:hidden text-accent"
+        onclick="toggleMenu()"
+        id="menuButton"
+      >
+        <i data-lucide="menu"></i>
+      </button>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#" class="flex items-center text-accent hover:text-primary transition-colors">
+          <i data-lucide="palette" class="w-[18px] h-[18px]"></i>
+          <span class="ml-2">Greeting Cards</span>
+        </a>
+        <a href="#" class="flex items-center text-accent hover:text-primary transition-colors">
+          <i data-lucide="book" class="w-[18px] h-[18px]"></i>
+          <span class="ml-2">Book Covers</span>
+        </a>
+        <a href="#" class="flex items-center text-accent hover:text-primary transition-colors">
+          <i data-lucide="coffee" class="w-[18px] h-[18px]"></i>
+          <span class="ml-2">Cookbook Spreads</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-4">
+      <a href="#" class="block py-2 flex items-center text-accent hover:text-primary transition-colors">
+        <i data-lucide="palette" class="w-[18px] h-[18px]"></i>
+        <span class="ml-2">Greeting Cards</span>
+      </a>
+      <a href="#" class="block py-2 flex items-center text-accent hover:text-primary transition-colors">
+        <i data-lucide="book" class="w-[18px] h-[18px]"></i>
+        <span class="ml-2">Book Covers</span>
+      </a>
+      <a href="#" class="block py-2 flex items-center text-accent hover:text-primary transition-colors">
+        <i data-lucide="coffee" class="w-[18px] h-[18px]"></i>
+        <span class="ml-2">Cookbook Spreads</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-secondary text-accent py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-display text-5xl md:text-7xl mb-6">Crafting Visual Stories</h2>
+      <p class="text-neutral text-lg md:text-xl max-w-2xl">
+        Specialized in creating stunning greeting cards, book covers, and cookbook spreads 
+        that capture attention and tell your story.
+      </p>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Portfolio Filter -->
+    <div class="flex flex-wrap gap-4 mb-12">
+      <button onclick="filterProjects('all')" class="filter-btn active px-6 py-2 rounded-full transition-colors bg-primary text-secondary">
+        All Works
+      </button>
+      <button onclick="filterProjects('greeting-cards')" class="filter-btn px-6 py-2 rounded-full transition-colors bg-secondary text-accent hover:bg-neutral">
+        Greeting Cards
+      </button>
+      <button onclick="filterProjects('book-covers')" class="filter-btn px-6 py-2 rounded-full transition-colors bg-secondary text-accent hover:bg-neutral">
+        Book Covers
+      </button>
+      <button onclick="filterProjects('cookbook-spreads')" class="filter-btn px-6 py-2 rounded-full transition-colors bg-secondary text-accent hover:bg-neutral">
+        Cookbook Spreads
+      </button>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+      <!-- Projects will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <section class="bg-secondary text-accent py-20 mt-20">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="font-display text-4xl mb-6">Let's Create Together</h2>
+      <p class="text-neutral mb-8">Ready to bring your vision to life? Get in touch!</p>
+      
+      <div id="contactContainer">
+        <button 
+          onclick="toggleContactForm()"
+          id="contactButton"
+          class="bg-primary text-secondary px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors flex items-center mx-auto"
+        >
+          Contact Me
+          <i data-lucide="chevron-right" class="ml-2"></i>
+        </button>
+
+        <form id="contactForm" class="hidden max-w-md mx-auto" onsubmit="handleSubmit(event)">
+          <div class="space-y-6">
+            <div class="text-left">
+              <label for="name" class="block text-sm font-medium mb-2">Name</label>
+              <input
+                type="text"
+                id="name"
+                class="w-full px-4 py-2 rounded-lg bg-accent text-secondary focus:outline-none focus:ring-2 focus:ring-primary"
+                required
+              />
+            </div>
+            
+            <div class="text-left">
+              <label for="email" class="block text-sm font-medium mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="w-full px-4 py-2 rounded-lg bg-accent text-secondary focus:outline-none focus:ring-2 focus:ring-primary"
+                required
+              />
+            </div>
+            
+            <div class="text-left">
+              <label for="summary" class="block text-sm font-medium mb-2">Project Summary</label>
+              <textarea
+                id="summary"
+                rows="4"
+                class="w-full px-4 py-2 rounded-lg bg-accent text-secondary focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                required
+              ></textarea>
+            </div>
+
+            <div class="flex gap-4 justify-center">
+              <button
+                type="submit"
+                class="bg-primary text-secondary px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors flex items-center"
+              >
+                Submit
+                <i data-lucide="send" class="ml-2"></i>
+              </button>
+              <button
+                type="button"
+                onclick="toggleContactForm()"
+                class="bg-neutral text-accent px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Project data
+    const projects = [
+      {
+        id: 1,
+        category: 'greeting-cards',
+        title: 'Birthday Collection 2024',
+        description: 'Modern and vibrant birthday card designs',
+        imageUrl: 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?auto=format&fit=crop&q=80&w=800',
+      },
+      {
+        id: 2,
+        category: 'book-covers',
+        title: 'Mystery Novel Series',
+        description: 'Dark and atmospheric book cover designs',
+        imageUrl: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800',
+      },
+      {
+        id: 3,
+        category: 'cookbook-spreads',
+        title: 'Seasonal Recipes',
+        description: 'Clean and modern cookbook layout design',
+        imageUrl: 'https://images.unsplash.com/photo-1495195134817-aeb325a55b65?auto=format&fit=crop&q=80&w=800',
+      },
+    ];
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const button = document.getElementById('menuButton');
+      const isOpen = menu.classList.contains('hidden');
+      
+      menu.classList.toggle('hidden');
+      button.innerHTML = isOpen 
+        ? '<i data-lucide="x"></i>' 
+        : '<i data-lucide="menu"></i>';
+      lucide.createIcons();
+    }
+
+    // Project filtering
+    function filterProjects(category) {
+      const filteredProjects = category === 'all' 
+        ? projects 
+        : projects.filter(project => project.category === category);
+      
+      renderProjects(filteredProjects);
+      
+      // Update active filter button
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-secondary');
+        btn.classList.add('bg-secondary', 'text-accent');
+      });
+      
+      const activeBtn = document.querySelector(`[onclick="filterProjects('${category}')"]`);
+      activeBtn.classList.remove('bg-secondary', 'text-accent');
+      activeBtn.classList.add('bg-primary', 'text-secondary');
+    }
+
+    // Render projects
+    function renderProjects(projectsToRender) {
+      const grid = document.getElementById('projectsGrid');
+      grid.innerHTML = projectsToRender.map(project => `
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+          <img 
+            src="${project.imageUrl}" 
+            alt="${project.title}"
+            class="w-full h-64 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="font-display text-xl text-secondary mb-2">${project.title}</h3>
+            <p class="text-neutral">${project.description}</p>
+            <button class="mt-4 text-primary font-semibold flex items-center hover:text-opacity-80 transition-colors">
+              View Project
+              <i data-lucide="chevron-right" class="ml-1"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // Contact form toggle
+    function toggleContactForm() {
+      const form = document.getElementById('contactForm');
+      const button = document.getElementById('contactButton');
+      form.classList.toggle('hidden');
+      button.classList.toggle('hidden');
+    }
+
+    // Form submission
+    function handleSubmit(event) {
+      event.preventDefault();
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        summary: document.getElementById('summary').value,
+      };
+      console.log('Form submitted:', formData);
+      
+      // Reset form
+      event.target.reset();
+      toggleContactForm();
+    }
+
+    // Initial render
+    renderProjects(projects);
+  </script>
+</body>
+</html>
